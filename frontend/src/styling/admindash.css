@@ -59,3 +59,19 @@
 .admindash-signout:hover {
   background-color: #cc0000;
 }
+
+@media (max-width: 600px) {
+  .admindash-container {
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+
+  .admindash-content {
+    padding: 15px;
+  }
+
+  .admindash-title {
+    font-size: 24px;
+    padding-top: 10px;
+  }
+}
