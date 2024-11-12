@@ -13,7 +13,7 @@ const EmployeeTicketDetails = () => {
     const fetchTicketDetails = async () => {
       try {
         const api = axios.create({
-          baseURL: "http://localhost:5000",
+          baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
         });
 
         const response = await api.get(`/api/tickets/${ticketId}/details`);
@@ -49,7 +49,7 @@ const EmployeeTicketDetails = () => {
 
   const handleAddFeedback = () => {
     const api = axios.create({
-      baseURL: "http://localhost:5000",
+      baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
     });
 
     api
@@ -89,7 +89,7 @@ const EmployeeTicketDetails = () => {
 
   const handleCloseTicket = () => {
     const api = axios.create({
-      baseURL: "http://localhost:5000",
+      baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
     });
 
     if (ticketDetails.currentstatus !== "closed") {

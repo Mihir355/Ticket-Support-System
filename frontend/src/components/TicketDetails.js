@@ -11,7 +11,7 @@ const TicketDetails = () => {
 
   useEffect(() => {
     const api = axios.create({
-      baseURL: "http://localhost:5000",
+      baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
     });
 
     api
@@ -26,7 +26,7 @@ const TicketDetails = () => {
 
   const handleAddNote = () => {
     const api = axios.create({
-      baseURL: "http://localhost:5000",
+      baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
     });
 
     api
@@ -47,7 +47,7 @@ const TicketDetails = () => {
 
     if (isConfirmed) {
       const api = axios.create({
-        baseURL: "http://localhost:5000",
+        baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
       });
 
       console.log("Deleting ticket with ID:", ticketId);
