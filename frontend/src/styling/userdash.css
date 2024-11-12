@@ -1,0 +1,60 @@
+.userdash-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background-color: rgb(203, 222, 255);
+}
+
+.userdash-content {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.userdash-title {
+  font-size: 28px;
+  margin-bottom: 30px;
+  margin-top: 0;
+  padding-top: 20px;
+}
+
+.userdash-buttons {
+  margin-bottom: 20px;
+}
+
+.userdash-button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.userdash-button:hover {
+  background-color: #0056b3;
+}
+
+.userdash-signout {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.userdash-signout:hover {
+  background-color: #cc0000;
+}
