@@ -10,8 +10,8 @@ body {
   height: 100vh;
   text-align: center;
   background-color: rgb(203, 222, 255);
-  padding: 0 20px; 
-  box-sizing: border-box; 
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .userdash-content {
@@ -31,11 +31,13 @@ body {
 
 .userdash-buttons {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .userdash-button {
   padding: 10px 20px;
-  margin-bottom: 10px; 
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -45,6 +47,7 @@ body {
   display: inline-block;
   font-size: 16px;
   transition: background-color 0.3s ease;
+  width: 100%;
 }
 
 .userdash-button:hover {
@@ -60,6 +63,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%;
 }
 
 .userdash-signout:hover {
@@ -68,12 +72,7 @@ body {
 
 @media (max-width: 600px) {
   .userdash-container {
-    padding: 0 20px; 
-  }
-
-  .userdash-button {
-    width: 100%; 
-    margin-bottom: 10px; 
+    padding: 0 20px;
   }
 
   .userdash-content {
@@ -81,7 +80,11 @@ body {
   }
 
   .userdash-title {
-    font-size: 24px; 
-    padding-top: 10px; 
+    font-size: 24px;
+    padding-top: 10px;
+  }
+
+  .userdash-button {
+    width: 100%;
   }
 }
