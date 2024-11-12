@@ -1,3 +1,8 @@
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
 .userdash-container {
   display: flex;
   justify-content: center;
@@ -5,6 +10,8 @@
   height: 100vh;
   text-align: center;
   background-color: rgb(203, 222, 255);
+  padding: 0 20px; 
+  box-sizing: border-box; 
 }
 
 .userdash-content {
@@ -28,7 +35,7 @@
 
 .userdash-button {
   padding: 10px 20px;
-  margin: 0 10px;
+  margin-bottom: 10px; 
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -57,4 +64,24 @@
 
 .userdash-signout:hover {
   background-color: #cc0000;
+}
+
+@media (max-width: 600px) {
+  .userdash-container {
+    padding: 0 20px; 
+  }
+
+  .userdash-button {
+    width: 100%; 
+    margin-bottom: 10px; 
+  }
+
+  .userdash-content {
+    padding: 15px;
+  }
+
+  .userdash-title {
+    font-size: 24px; 
+    padding-top: 10px; 
+  }
 }
