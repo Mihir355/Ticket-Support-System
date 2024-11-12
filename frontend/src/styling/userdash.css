@@ -20,6 +20,7 @@ body {
   padding: 20px;
   background-color: #f8f9fa;
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .userdash-title {
@@ -49,6 +50,7 @@ body {
   font-size: 16px;
   transition: background-color 0.3s ease;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .userdash-button:hover {
@@ -74,6 +76,7 @@ body {
 @media (max-width: 600px) {
   .userdash-container {
     padding: 0 15px;
+    box-sizing: border-box;
   }
 
   .userdash-content {
