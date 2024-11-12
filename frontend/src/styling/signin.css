@@ -6,6 +6,7 @@
   background-color: rgb(203, 222, 255);
   height: 100vh;
   width: 100vw;
+  padding: 0 20px;
 }
 
 .signin-title {
@@ -19,7 +20,7 @@
   max-width: 400px;
   padding: 20px;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -53,7 +54,7 @@
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   margin-top: 10px;
 }
@@ -66,4 +67,19 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+}
+
+@media (max-width: 600px) {
+  .signin-container {
+    padding: 0 20px;
+  }
+
+  .form-container {
+    padding: 15px;
+  }
+
+  .signin-title {
+    font-size: 24px;
+    padding: 15px;
+  }
 }

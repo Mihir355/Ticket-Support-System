@@ -6,7 +6,7 @@
   background-color: rgb(203, 222, 255);
   height: 100vh;
   width: 100vw;
-
+  padding: 0 20px;
 }
 
 .signup-title {
@@ -67,4 +67,19 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+}
+
+@media (max-width: 600px) {
+  .signup-container {
+    padding: 0 20px;
+  }
+
+  .form-container {
+    padding: 15px;
+  }
+
+  .signup-title {
+    font-size: 24px;
+    padding: 15px;
+  }
 }
