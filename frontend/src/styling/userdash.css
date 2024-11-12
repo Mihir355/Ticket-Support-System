@@ -10,7 +10,7 @@ body {
   height: 100vh;
   text-align: center;
   background-color: rgb(203, 222, 255);
-  padding: 0 20px;
+  padding: 0 15px;
   box-sizing: border-box;
 }
 
@@ -73,7 +73,7 @@ body {
 
 @media (max-width: 600px) {
   .userdash-container {
-    padding: 0 20px;
+    padding: 0 15px;
   }
 
   .userdash-content {
