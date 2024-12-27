@@ -66,9 +66,9 @@ const SignIn = () => {
   return (
     <div className="signin-container">
       <h2 className="signin-title">Sign In</h2>
-      <div className="form-container">
+      <div className="signin-form-container">
         <form className="signin-form">
-          <div className="formGroup">
+          <div className="signin-formGroup">
             <label className="signin-label">Email:</label>
             <input
               type="email"
@@ -78,7 +78,7 @@ const SignIn = () => {
               className="signin-input"
             />
           </div>
-          <div className="formGroup">
+          <div className="signin-formGroup">
             <label className="signin-label">Password:</label>
             <input
               type="password"
@@ -88,7 +88,7 @@ const SignIn = () => {
               className="signin-input"
             />
           </div>
-          <div className="formGroup">
+          <div className="signin-formGroup">
             <label className="signin-label">User Type:</label>
             <select
               value={userType}

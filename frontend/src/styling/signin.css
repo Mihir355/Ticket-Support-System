@@ -1,16 +1,10 @@
-body {
-  margin: 0;
-  overflow-x: hidden;
-}
-
 .signin-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: rgb(203, 222, 255);
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
   padding: 0 20px;
   box-sizing: border-box;
 }
@@ -19,15 +13,17 @@ body {
   font-size: 28px;
   padding: 20px;
   margin: 0;
+  text-align: center;
+  color: #333;
 }
 
-.form-container {
+.signin-form-container {
   width: 100%;
   max-width: 400px;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .signin-form {
@@ -36,7 +32,7 @@ body {
   width: 100%;
 }
 
-.formGroup {
+.signin-formGroup {
   margin-bottom: 15px;
   width: 100%;
 }
@@ -44,15 +40,25 @@ body {
 .signin-label {
   display: block;
   margin-bottom: 5px;
+  font-size: 14px;
+  color: #555;
 }
 
 .signin-input,
 .signin-select {
-  padding: 8px;
-  border-radius: 3px;
+  padding: 10px;
+  border-radius: 5px;
   border: 1px solid #ccc;
   width: 100%;
   box-sizing: border-box;
+  font-size: 14px;
+  color: #333;
+}
+
+.signin-input:focus,
+.signin-select:focus {
+  border-color: #007bff;
+  outline: none;
 }
 
 .button {
@@ -60,9 +66,11 @@ body {
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 .button:hover {
@@ -75,18 +83,31 @@ body {
   width: 100%;
 }
 
+.buttons .button {
+  width: 48%;
+}
+
 @media (max-width: 600px) {
   .signin-container {
     padding: 0 20px;
   }
 
-  .form-container {
+  .signin-form-container {
     padding: 15px;
   }
 
   .signin-title {
     font-size: 24px;
     padding: 15px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .buttons .button {
+    width: 100%;
+    margin-bottom: 10px;
   }
 }
 
@@ -109,10 +130,13 @@ body {
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  max-width: 90%;
 }
 
 .modal p {
   margin-bottom: 20px;
+  font-size: 16px;
+  color: #333;
 }
 
 .modal-close-button {
@@ -122,6 +146,8 @@ body {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
 .modal-close-button:hover {
