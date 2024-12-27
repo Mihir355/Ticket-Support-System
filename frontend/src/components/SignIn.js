@@ -3,11 +3,27 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styling/signin.css";
 
+const AlertModal = ({ message, onClose }) => {
+  if (!message) return null;
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal">
+        <p>{message}</p>
+        <button onClick={onClose} className="modal-close-button">
+          Close
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const SignIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userType, setUserType] = useState("user");
+  const [alertMessage, setAlertMessage] = useState("");
 
   const handleSignIn = () => {
     const user = {
@@ -32,12 +48,12 @@ const SignIn = () => {
         }
       })
       .catch((error) => {
-        console.error("Error signing in", error);
         if (error.response && error.response.status === 400) {
-          alert("User not found");
+          setAlertMessage("User not found");
         } else if (error.response && error.response.status === 401) {
-          alert("Incorrect credentials");
+          setAlertMessage("Incorrect credentials");
         } else {
+          setAlertMessage("An unexpected error occurred. Please try again.");
           console.error("Error signing in", error);
         }
       });
@@ -93,6 +109,7 @@ const SignIn = () => {
           </div>
         </form>
       </div>
+      <AlertModal message={alertMessage} onClose={() => setAlertMessage("")} />
     </div>
   );
 };
