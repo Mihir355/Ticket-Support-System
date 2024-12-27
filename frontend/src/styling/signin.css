@@ -89,7 +89,7 @@
 
 @media (max-width: 600px) {
   .signin-container {
-    padding: 0 20px;
+    padding: 20px;
   }
 
   .signin-form-container {
