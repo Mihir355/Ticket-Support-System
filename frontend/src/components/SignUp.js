@@ -3,6 +3,21 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styling/signup.css";
 
+const AlertModal = ({ message, onClose }) => {
+  if (!message) return null;
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal">
+        <p>{message}</p>
+        <button onClick={onClose} className="modal-close-button">
+          Close
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const SignUp = () => {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
@@ -12,30 +27,26 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userType, setUserType] = useState("user");
   const [specialization, setSpecialization] = useState("iphone");
+  const [alertMessage, setAlertMessage] = useState("");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const minPasswordLength = 8;
 
   const handleSignUp = () => {
     if (password !== confirmPassword) {
-      console.error("Password and Confirm Password do not match");
-      window.alert("Password and Confirm Password do not match");
+      setAlertMessage("Password and Confirm Password do not match");
       return;
     }
 
     if (password.length < minPasswordLength) {
-      console.error(
-        `Password must be at least ${minPasswordLength} characters long`
-      );
-      window.alert(
+      setAlertMessage(
         `Password must be at least ${minPasswordLength} characters long`
       );
       return;
     }
 
     if (!emailRegex.test(email)) {
-      console.error("Invalid email format");
-      window.alert("Invalid email format");
+      setAlertMessage("Invalid email format");
       return;
     }
 
@@ -53,13 +64,11 @@ const SignUp = () => {
 
     api
       .post("/api/user/signup", user)
-      .then((response) => {
-        console.log("User registered successfully");
-        window.alert("User registered successfully");
+      .then(() => {
+        setAlertMessage("User registered successfully");
       })
-      .catch((error) => {
-        console.error("Error registering user", error);
-        window.alert("Error registering user");
+      .catch(() => {
+        setAlertMessage("Error registering user");
       });
   };
 
@@ -157,6 +166,7 @@ const SignUp = () => {
           </div>
         </form>
       </div>
+      <AlertModal message={alertMessage} onClose={() => setAlertMessage("")} />
     </div>
   );
 };
