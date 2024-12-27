@@ -3,37 +3,17 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styling/signin.css";
 
-const CustomDropdown = ({ options, selected, onChange }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleSelect = (value) => {
-    onChange(value);
-    setIsOpen(false);
-  };
+const AlertModal = ({ message, onClose }) => {
+  if (!message) return null;
 
   return (
-    <div className="custom-dropdown">
-      <div
-        className="dropdown-button"
-        onClick={() => setIsOpen((prev) => !prev)}
-      >
-        {selected
-          ? options.find((opt) => opt.value === selected).label
-          : "Select an option"}
+    <div className="modal-overlay">
+      <div className="modal">
+        <p>{message}</p>
+        <button onClick={onClose} className="modal-close-button">
+          Close
+        </button>
       </div>
-      {isOpen && (
-        <ul className="dropdown-menu">
-          {options.map((option) => (
-            <li
-              key={option.value}
-              className="dropdown-item"
-              onClick={() => handleSelect(option.value)}
-            >
-              {option.label}
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 };
@@ -46,7 +26,11 @@ const SignIn = () => {
   const [alertMessage, setAlertMessage] = useState("");
 
   const handleSignIn = () => {
-    const user = { email, password, userType };
+    const user = {
+      email,
+      password,
+      userType,
+    };
     const api = axios.create({
       baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
     });
@@ -75,7 +59,9 @@ const SignIn = () => {
       });
   };
 
-  const handleGoBack = () => navigate("/");
+  const handleGoBack = () => {
+    navigate("/");
+  };
 
   return (
     <div className="signin-container">
@@ -104,14 +90,14 @@ const SignIn = () => {
           </div>
           <div className="signin-formGroup">
             <label className="signin-label">User Type:</label>
-            <CustomDropdown
-              options={[
-                { value: "user", label: "User" },
-                { value: "employee", label: "Employee" },
-              ]}
-              selected={userType}
-              onChange={setUserType}
-            />
+            <select
+              value={userType}
+              onChange={(e) => setUserType(e.target.value)}
+              className="signin-select"
+            >
+              <option value="user">User</option>
+              <option value="employee">Employee</option>
+            </select>
           </div>
           <div className="buttons">
             <button type="button" onClick={handleSignIn} className="button">
@@ -123,6 +109,7 @@ const SignIn = () => {
           </div>
         </form>
       </div>
+      <AlertModal message={alertMessage} onClose={() => setAlertMessage("")} />
     </div>
   );
 };
