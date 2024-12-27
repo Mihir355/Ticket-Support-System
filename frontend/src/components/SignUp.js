@@ -79,10 +79,10 @@ const SignUp = () => {
   return (
     <div className="signup-container">
       <h2 className="signup-title">Sign Up</h2>
-      <div className="form-container">
+      <div className="signup-form-container">
         <form className="signup-form">
-          <div className="formGroup">
-            <label className="signup-label">First Name:</label>
+          <div className="signup-formGroup">
+            <label className="signup-label">First Name</label>
             <input
               type="text"
               value={firstName}
@@ -91,8 +91,8 @@ const SignUp = () => {
               className="signup-input"
             />
           </div>
-          <div className="formGroup">
-            <label className="signup-label">Last Name:</label>
+          <div className="signup-formGroup">
+            <label className="signup-label">Last Name</label>
             <input
               type="text"
               value={lastName}
@@ -101,8 +101,8 @@ const SignUp = () => {
               className="signup-input"
             />
           </div>
-          <div className="formGroup">
-            <label className="signup-label">Email:</label>
+          <div className="signup-formGroup">
+            <label className="signup-label">Email</label>
             <input
               type="email"
               value={email}
@@ -111,8 +111,8 @@ const SignUp = () => {
               className="signup-input"
             />
           </div>
-          <div className="formGroup">
-            <label className="signup-label">Password:</label>
+          <div className="signup-formGroup">
+            <label className="signup-label">Password</label>
             <input
               type="password"
               value={password}
@@ -121,8 +121,8 @@ const SignUp = () => {
               className="signup-input"
             />
           </div>
-          <div className="formGroup">
-            <label className="signup-label">Confirm Password:</label>
+          <div className="signup-formGroup">
+            <label className="signup-label">Confirm Password</label>
             <input
               type="password"
               value={confirmPassword}
@@ -131,8 +131,8 @@ const SignUp = () => {
               className="signup-input"
             />
           </div>
-          <div className="formGroup">
-            <label className="signup-label">User Type:</label>
+          <div className="signup-formGroup">
+            <label className="signup-label">User Type</label>
             <select
               value={userType}
               onChange={(e) => setUserType(e.target.value)}
@@ -143,8 +143,8 @@ const SignUp = () => {
             </select>
           </div>
           {userType === "employee" && (
-            <div className="formGroup">
-              <label className="signup-label">Specialization:</label>
+            <div className="signup-formGroup">
+              <label className="signup-label">Specialization</label>
               <select
                 value={specialization}
                 onChange={(e) => setSpecialization(e.target.value)}
