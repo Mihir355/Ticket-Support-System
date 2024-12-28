@@ -1,5 +1,3 @@
-/* signup.css */
-
 .signup-page {
   display: flex;
   height: 100vh;
@@ -178,5 +176,6 @@
   .signup-content {
     flex: none;
     padding: 20px;
+    overflow-y: auto;
   }
 }
