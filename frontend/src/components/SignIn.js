@@ -22,16 +22,12 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State for password visibility
+  const [showPassword, setShowPassword] = useState(false);
   const [userType, setUserType] = useState("user");
   const [alertMessage, setAlertMessage] = useState("");
 
   const handleSignIn = () => {
-    const user = {
-      email,
-      password,
-      userType,
-    };
+    const user = { email, password, userType };
     const api = axios.create({
       baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
     });
@@ -60,14 +56,13 @@ const SignIn = () => {
       });
   };
 
-  const handleGoBack = () => {
-    navigate("/");
-  };
+  const handleGoBack = () => navigate("/");
 
   return (
-    <div className="signin-container">
-      <h2 className="signin-title">Sign In</h2>
-      <div className="signin-form-container">
+    <div className="signin-page">
+      <div className="signin-content">
+        <h1 className="platform-title">Product Support Platform</h1>
+        <h2 className="signin-title">Log in to your account</h2>
         <form className="signin-form">
           <div className="signin-formGroup">
             <label className="signin-label">Email</label>
@@ -117,6 +112,13 @@ const SignIn = () => {
             </button>
           </div>
         </form>
+      </div>
+      <div className="signin-image-container">
+        <img
+          src="https://res.cloudinary.com/dkpm0glt6/image/upload/v1735384751/Solution_solving_problem_answer_to_hard_question_or_creativity_idea_and_innovation_help_business_success_leadership_to_overcome_difficulty_businessman_connect_question_mark_with_lightbulb_solution__bqnvey.jpg"
+          alt="Solution strategy"
+          className="signin-image"
+        />
       </div>
       <AlertModal message={alertMessage} onClose={() => setAlertMessage("")} />
     </div>
