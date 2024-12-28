@@ -55,6 +55,7 @@
   width: 100%;
   max-width: 450px;
   margin-top: 10px;
+  box-sizing: border-box;
 }
 
 .signup-formGroup {
@@ -178,6 +179,9 @@
     padding: 20px;
     height: 100vh; 
     overflow-y: auto; 
+    box-sizing: border-box;
+  }
+  .signup-form{
     box-sizing: border-box;
   }
 }
