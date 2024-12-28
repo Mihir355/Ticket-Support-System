@@ -18,22 +18,13 @@ const Homepage = () => {
           className="hero-image"
         />
       </header>
-      <div className="content-container">
-        <section className="main-section">
-          <h2 className="section-title">Start Resolving Issues Today</h2>
-          <p className="section-description">
-            Whether you are here to raise a ticket or to help others, get
-            started by signing up or signing in.
-          </p>
-        </section>
-        <div className="box-container">
-          <Link to="/signin" className="main-button">
-            Start Raising Tickets
-          </Link>
-          <Link to="/signup" className="main-button">
-            New User? Sign Up
-          </Link>
-        </div>
+      <div className="box-container">
+        <Link to="/signin" className="main-button">
+          Sign In
+        </Link>
+        <Link to="/signup" className="main-button">
+          Sign Up
+        </Link>
       </div>
       <section className="features-section">
         <h2 className="features-title">Why Choose Us?</h2>
