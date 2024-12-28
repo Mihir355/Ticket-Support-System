@@ -32,6 +32,7 @@
   max-width: 100%;
   height: auto;
   margin-top: 1rem;
+  border-radius: 1px;
 }
 
 .hero-right {
@@ -39,7 +40,7 @@
   text-align: center;
   padding: 1rem;
   background-color: rgb(203, 222, 255);
-  border: 1px solid #ddd;
+  border: 1px solid #0b2275;
   border-radius: 8px;
 }
 
