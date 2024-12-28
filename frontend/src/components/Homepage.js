@@ -37,24 +37,32 @@ const Homepage = () => {
         <h2 className="features-title">Why Choose Us?</h2>
         <div className="features-list">
           <div className="feature-item">
-            <h3>Effortless Issue Tracking</h3>
+            <h3>Seamless Sign In & Ticket Management</h3>
             <p>
-              Keep track of your support tickets and resolutions in one place.
+              Users and employees can easily sign in or sign up to manage their
+              profiles and raise or resolve tickets related to products like
+              iPhones, iPads, or iWatches.
             </p>
           </div>
           <div className="feature-item">
-            <h3>Dedicated Employee Portal</h3>
+            <h3>Intelligent Ticket Assignment</h3>
             <p>
-              Specialized tools for employees to manage and resolve issues
-              efficiently.
+              Our system ensures tickets are assigned to the most suitable
+              employee based on their expertise and availability, helping
+              resolve issues faster.
             </p>
           </div>
           <div className="feature-item">
-            <h3>Multi-Device Support</h3>
-            <p>Access the platform seamlessly on desktop, tablet, or mobile.</p>
+            <h3>Collaborative Q&A and Feedback</h3>
+            <p>
+              Employees can ask product-related questions, and users can provide
+              feedback asynchronously, ensuring effective communication at their
+              convenience.
+            </p>
           </div>
         </div>
       </section>
+
       <footer className="homepage-footer">
         <p>© 2024 Product Support Platform. All rights reserved.</p>
       </footer>
