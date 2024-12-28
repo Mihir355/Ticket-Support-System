@@ -79,9 +79,23 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signup-container">
-      <h2 className="signup-title">Sign Up</h2>
-      <div className="signup-form-container">
+    <div className="signup-page">
+      <div className="signup-image-container">
+        <img
+          src="https://res.cloudinary.com/dkpm0glt6/image/upload/v1735384751/Growth_strategy_solving_problem_to_success_in_work_solution_or_growing_business_concept__yawgmq.jpg"
+          alt="Growth strategy"
+          className="signup-image"
+        />
+      </div>
+      <div className="signup-content">
+        <h1 className="platform-title">Product Support Platform</h1>
+        <h2 className="signup-title">Create Your Account</h2>
+        <p className="signin-link">
+          Already have an account?{" "}
+          <span onClick={() => navigate("/signin")} className="link">
+            Sign In
+          </span>
+        </p>
         <form className="signup-form">
           <div className="signup-formGroup">
             <label className="signup-label">First Name</label>
@@ -176,7 +190,7 @@ const SignUp = () => {
           )}
           <div className="buttons">
             <button type="button" onClick={handleSignUp} className="button">
-              Sign Up
+              Create Account
             </button>
             <button type="button" onClick={handleGoBack} className="button">
               Go Back
