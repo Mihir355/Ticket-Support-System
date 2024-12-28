@@ -55,11 +55,12 @@
   width: 100%;
   max-width: 450px;
   margin-top: 10px;
-  box-sizing: border-box;
 }
 
 .signup-formGroup {
   margin-bottom: 15px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .signup-label {
@@ -76,6 +77,7 @@
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .signup-input:focus,
@@ -179,9 +181,6 @@
     padding: 20px;
     height: 100vh; 
     overflow-y: auto; 
-    box-sizing: border-box;
-  }
-  .signup-form{
     box-sizing: border-box;
   }
 }
