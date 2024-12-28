@@ -21,6 +21,8 @@
 }
 
 .main-title {
+  font-family: "DM Serif Text", serif;
+  font-style: normal;
   font-size: 28px;
   margin-bottom: 20px;
   text-align: center;
