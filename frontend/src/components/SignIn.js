@@ -22,6 +22,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // State for password visibility
   const [userType, setUserType] = useState("user");
   const [alertMessage, setAlertMessage] = useState("");
 
@@ -78,15 +79,23 @@ const SignIn = () => {
               className="signin-input"
             />
           </div>
-          <div className="signin-formGroup">
+          <div className="signin-formGroup password-input-container">
             <label className="signin-label">Password:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              className="signin-input"
-            />
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                className="signin-input"
+              />
+              <span
+                className="password-toggle-icon"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "👁️" : "👁️‍🗨️"}
+              </span>
+            </div>
           </div>
           <div className="signin-formGroup">
             <label className="signin-label">User Type:</label>
