@@ -70,7 +70,7 @@ const SignIn = () => {
       <div className="signin-form-container">
         <form className="signin-form">
           <div className="signin-formGroup">
-            <label className="signin-label">Email:</label>
+            <label className="signin-label">Email</label>
             <input
               type="email"
               value={email}
@@ -80,7 +80,7 @@ const SignIn = () => {
             />
           </div>
           <div className="signin-formGroup password-input-container">
-            <label className="signin-label">Password:</label>
+            <label className="signin-label">Password</label>
             <div className="password-wrapper">
               <input
                 type={showPassword ? "text" : "password"}
@@ -98,7 +98,7 @@ const SignIn = () => {
             </div>
           </div>
           <div className="signin-formGroup">
-            <label className="signin-label">User Type:</label>
+            <label className="signin-label">User Type</label>
             <select
               value={userType}
               onChange={(e) => setUserType(e.target.value)}
