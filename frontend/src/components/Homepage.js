@@ -13,7 +13,7 @@ const Homepage = () => {
           issues, and get the support you need.
         </p>
         <img
-          src="/images/support-platform-illustration.png"
+          src="https://res.cloudinary.com/dkpm0glt6/image/upload/v1735365050/Free_Vector___Flat_design_illustration_customer_support_shac43.jpg"
           alt="Support Illustration"
           className="hero-image"
         />
