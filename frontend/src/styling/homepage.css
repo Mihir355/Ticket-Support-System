@@ -33,6 +33,7 @@
   height: auto;
   margin-top: 1rem;
   border-radius: 10px;
+  border: 3px solid #0b2275;
 }
 
 .hero-right {
