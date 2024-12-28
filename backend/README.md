@@ -1,1 +1,1 @@
-# MERN-Ticket-Support-System
+# MERN-Product-Support-Platform
