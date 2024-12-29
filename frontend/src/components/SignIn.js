@@ -27,7 +27,11 @@ const SignIn = () => {
   const [alertMessage, setAlertMessage] = useState("");
 
   const handleSignIn = () => {
-    const user = { email, password, userType };
+    const user = {
+      email,
+      password,
+      userType,
+    };
     const api = axios.create({
       baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
     });
@@ -56,13 +60,22 @@ const SignIn = () => {
       });
   };
 
-  const handleGoBack = () => navigate("/");
+  const handleGoBack = () => {
+    navigate("/");
+  };
 
   return (
     <div className="signin-page">
+      <div className="signin-image-container">
+        <img
+          src="https://res.cloudinary.com/dkpm0glt6/image/upload/v1735384751/Growth_strategy_solving_problem_to_success_in_work_solution_or_growing_business_concept__yawgmq.jpg"
+          alt="Growth strategy"
+          className="signin-image"
+        />
+      </div>
       <div className="signin-content">
         <h1 className="platform-title">Product Support Platform</h1>
-        <h2 className="signin-title">Log in to your account</h2>
+        <h2 className="signin-title">Log In to Your Account</h2>
         <form className="signin-form">
           <div className="signin-formGroup">
             <label className="signin-label">Email</label>
@@ -74,7 +87,7 @@ const SignIn = () => {
               className="signin-input"
             />
           </div>
-          <div className="signin-formGroup password-input-container">
+          <div className="signin-formGroup">
             <label className="signin-label">Password</label>
             <div className="password-wrapper">
               <input
@@ -105,20 +118,13 @@ const SignIn = () => {
           </div>
           <div className="buttons">
             <button type="button" onClick={handleSignIn} className="button">
-              Login
+              Log In
             </button>
             <button type="button" onClick={handleGoBack} className="button">
               Go Back
             </button>
           </div>
         </form>
-      </div>
-      <div className="signin-image-container">
-        <img
-          src="https://res.cloudinary.com/dkpm0glt6/image/upload/v1735384751/Solution_solving_problem_answer_to_hard_question_or_creativity_idea_and_innovation_help_business_success_leadership_to_overcome_difficulty_businessman_connect_question_mark_with_lightbulb_solution__bqnvey.jpg"
-          alt="Solution strategy"
-          className="signin-image"
-        />
       </div>
       <AlertModal message={alertMessage} onClose={() => setAlertMessage("")} />
     </div>
