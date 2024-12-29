@@ -64,6 +64,10 @@ const SignIn = () => {
     navigate("/");
   };
 
+  const handleSignUp = () => {
+    navigate("/signup");
+  };
+
   return (
     <div className="signin-page">
       <div className="signin-image-container">
@@ -76,6 +80,12 @@ const SignIn = () => {
       <div className="signin-content">
         <h1 className="platform-title">Product Support Platform</h1>
         <h2 className="signin-title">Log in to your account</h2>
+        <p className="signup-prompt">
+          Don't have an account?{" "}
+          <span className="signup-link" onClick={handleSignUp}>
+            Sign Up
+          </span>
+        </p>
         <form className="signin-form">
           <div className="signin-formGroup">
             <label className="signin-label">Email</label>
@@ -106,7 +116,7 @@ const SignIn = () => {
             </div>
           </div>
           <div className="signin-formGroup">
-            <label className="signin-label">User Type</label>
+            <label className=" signin-label">User Type</label>
             <select
               value={userType}
               onChange={(e) => setUserType(e.target.value)}
