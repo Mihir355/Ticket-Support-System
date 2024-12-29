@@ -86,7 +86,7 @@
 }
 
 .features-list {
-  display: flex;
+  display: flex; /* Keep features in a row on larger screens */
   justify-content: center;
   gap: 1.5rem;
 }
@@ -156,5 +156,12 @@
   .feature-item {
     width: 90%; /* Make feature items responsive */
     max-width: 600px; /* Limit max width */
+  }
+}
+
+/* Ensure right margin for button container on desktop */
+@media (min-width: 769px) {
+  .hero-right {
+    margin-right: 1rem; /* Maintain right margin for desktop */
   }
 }
