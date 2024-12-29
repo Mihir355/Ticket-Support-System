@@ -50,7 +50,7 @@ const SignIn = () => {
       })
       .catch((error) => {
         if (error.response && error.response.status === 400) {
-          setAlertMessage("User not found");
+          setAlertMessage("User  not found");
         } else if (error.response && error.response.status === 401) {
           setAlertMessage("Incorrect credentials");
         } else {
@@ -75,7 +75,7 @@ const SignIn = () => {
       </div>
       <div className="signin-content">
         <h1 className="platform-title">Product Support Platform</h1>
-        <h2 className="signin-title">Log In to Your Account</h2>
+        <h2 className="signin-title">Log in to your account</h2>
         <form className="signin-form">
           <div className="signin-formGroup">
             <label className="signin-label">Email</label>
@@ -87,7 +87,7 @@ const SignIn = () => {
               className="signin-input"
             />
           </div>
-          <div className="signin-formGroup">
+          <div className="signin-formGroup password-input-container">
             <label className="signin-label">Password</label>
             <div className="password-wrapper">
               <input
@@ -112,13 +112,13 @@ const SignIn = () => {
               onChange={(e) => setUserType(e.target.value)}
               className="signin-select"
             >
-              <option value="user">User</option>
+              <option value="user">User </option>
               <option value="employee">Employee</option>
             </select>
           </div>
           <div className="buttons">
             <button type="button" onClick={handleSignIn} className="button">
-              Log In
+              Login
             </button>
             <button type="button" onClick={handleGoBack} className="button">
               Go Back
