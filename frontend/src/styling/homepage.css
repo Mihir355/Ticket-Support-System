@@ -9,6 +9,7 @@
   align-items: center;
   padding: 2rem;
   background-color: rgb(203, 222, 255);
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
 
 .hero-left {
@@ -86,12 +87,14 @@
 
 .features-list {
   display: flex;
-  justify-content: center;
+  flex-direction: column; /* Stack features vertically */
+  align-items: center; /* Center align items */
   gap: 1.5rem;
 }
 
 .feature-item {
-  flex: 1;
+  width: 90%; /* Make feature items responsive */
+  max-width: 600px; /* Limit max width */
   background: #fff;
   padding: 1rem;
   border-radius: 8px;
@@ -113,4 +116,39 @@
   text-align: center;
   background-color: #333;
   color: #fff;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column; /* Stack hero section vertically */
+    align-items: center; /* Center align items */
+  }
+
+  .hero-left,
+  .hero-right {
+    flex: none; /* Remove flex-grow */
+    width: 100%; /* Full width for mobile */
+    text-align: center; /* Center text */
+  }
+
+  .hero-title {
+    font-size: 2rem; /* Adjust title size */
+  }
+
+  .hero-description {
+    font-size: 1rem; /* Adjust description size */
+  }
+
+  .hero-action-title {
+    font-size: 1.5rem; /* Adjust action title size */
+  }
+
+  .features-list {
+    gap: 1rem; /* Reduce gap between features */
+  }
+
+  .feature-item {
+    width: 95%; /* Make feature items responsive */
+  }
 }
