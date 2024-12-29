@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import ProfileUpdate from "./profileUpdate"; // Import the ProfileUpdate component
+import ProfileUpdate from "./profileUpdate";
 import "../styling/userdash.css";
 
 const UserDash = () => {
