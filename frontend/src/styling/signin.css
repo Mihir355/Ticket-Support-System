@@ -27,14 +27,14 @@
 }
 .signup-prompt {
   font-size: 1rem;
-  margin-top: 10px; /* Adjust as needed */
-  text-align: center; /* Center the text */
+  margin-top: 10px; 
+  text-align: center; 
 }
 
 .signup-link {
-  color: blue; /* Change to your desired color */
-  cursor: pointer; /* Indicate that it's clickable */
-  text-decoration: underline; /* Optional: underline the link */
+  color: #0073e6; 
+  cursor: pointer; 
+  text-decoration: underline; 
 }
 
 .platform-title {

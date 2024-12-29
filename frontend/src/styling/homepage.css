@@ -43,7 +43,7 @@
   background-color: rgb(203, 222, 255);
   border: 3px solid #0b2275;
   border-radius: 8px;
-  margin-right: 1rem; /* Add margin to the right for spacing */
+  margin-right: 1rem;
 }
 
 .hero-action-title {
@@ -86,7 +86,7 @@
 }
 
 .features-list {
-  display: flex; /* Keep features in a row on larger screens */
+  display: flex;
   justify-content: center;
   gap: 1.5rem;
 }
@@ -116,52 +116,50 @@
   color: #fff;
 }
 
-/* Media Queries for Mobile Responsiveness */
 @media (max-width: 768px) {
   .hero-section {
-    flex-direction: column; /* Stack hero section vertically */
-    align-items: center; /* Center align items */
+    flex-direction: column;
+    align-items: center;
   }
 
   .hero-left,
   .hero-right {
-    flex: none; /* Remove flex-grow */
-    width: 100%; /* Full width for mobile */
-    text-align: center; /* Center text */
+    flex: none;
+    width: 100%;
+    text-align: center;
   }
 
   .hero-right {
-    margin-right: 0; /* Remove right margin on mobile */
-    margin-bottom: 1rem; /* Add bottom margin for spacing */
+    margin-right: 0;
+    margin-bottom: 1rem;
   }
 
   .hero-title {
-    font-size: 2rem; /* Adjust title size */
+    font-size: 2rem;
   }
 
   .hero-description {
-    font-size: 1rem; /* Adjust description size */
+    font-size: 1rem;
   }
 
   .hero-action-title {
-    font-size: 1.5rem; /* Adjust action title size */
+    font-size: 1.5rem;
   }
 
   .features-list {
-    flex-direction: column; /* Stack features vertically */
-    align-items: center; /* Center align items */
-    gap: 1rem; /* Reduce gap between features */
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
 
   .feature-item {
-    width: 90%; /* Make feature items responsive */
-    max-width: 600px; /* Limit max width */
+    width: 90%;
+    max-width: 600px;
   }
 }
 
-/* Ensure right margin for button container on desktop */
 @media (min-width: 769px) {
   .hero-right {
-    margin-right: 1rem; /* Maintain right margin for desktop */
+    margin-right: 1rem;
   }
 }
