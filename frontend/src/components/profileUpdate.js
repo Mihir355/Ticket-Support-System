@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../styling/profileupdate.css";
 
 const ProfileUpdate = ({ userId, onProfileUpdated }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
-    // Fetch user details when the component mounts
     const fetchUserDetails = async () => {
       try {
         const response = await axios.get(
@@ -30,22 +31,20 @@ const ProfileUpdate = ({ userId, onProfileUpdated }) => {
     try {
       await axios.put(
         `https://ticket-support-system-backend-elxz.onrender.com/api/user/${userId}`,
-        {
-          firstName,
-          lastName,
-          email,
-        }
+        { firstName, lastName, email }
       );
-      onProfileUpdated();
+      setSuccessMessage("Profile updated successfully!");
+      if (onProfileUpdated) onProfileUpdated();
     } catch (error) {
       console.error("Error updating profile", error);
     }
   };
 
   return (
-    <form onSubmit={handleUpdate}>
-      <h3>Update Profile</h3>
-      <div>
+    <div className="profile-update-container">
+      <form className="profile-form" onSubmit={handleUpdate}>
+        <h2>Update Profile</h2>
+
         <label>First Name:</label>
         <input
           type="text"
@@ -53,8 +52,7 @@ const ProfileUpdate = ({ userId, onProfileUpdated }) => {
           onChange={(e) => setFirstName(e.target.value)}
           required
         />
-      </div>
-      <div>
+
         <label>Last Name:</label>
         <input
           type="text"
@@ -62,8 +60,7 @@ const ProfileUpdate = ({ userId, onProfileUpdated }) => {
           onChange={(e) => setLastName(e.target.value)}
           required
         />
-      </div>
-      <div>
+
         <label>Email:</label>
         <input
           type="email"
@@ -71,9 +68,12 @@ const ProfileUpdate = ({ userId, onProfileUpdated }) => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-      </div>
-      <button type="submit">Update</button>
-    </form>
+
+        <button type="submit">Update</button>
+
+        {successMessage && <p className="success-message">{successMessage}</p>}
+      </form>
+    </div>
   );
 };
 
