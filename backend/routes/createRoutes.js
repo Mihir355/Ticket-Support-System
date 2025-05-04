@@ -65,19 +65,19 @@ router.get("/user/:userId", async (req, res) => {
     const userId = req.params.userId;
     const page = parseInt(req.query.page) || 1;
     const limit = 5;
+
     const skip = (page - 1) * limit;
 
+    const total = await Ticket.countDocuments({ userId });
     const tickets = await Ticket.find({ userId })
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
 
-    const totalTickets = await Ticket.countDocuments({ userId });
-
     res.status(200).json({
       tickets,
-      totalPages: Math.ceil(totalTickets / limit),
       currentPage: page,
+      totalPages: Math.ceil(total / limit),
     });
   } catch (error) {
     console.error("Error fetching user's tickets", error);

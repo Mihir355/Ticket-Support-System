@@ -9,20 +9,18 @@ const UserDash = () => {
   const navigate = useNavigate();
   const [latestUpdates, setLatestUpdates] = useState([]);
   const [showProfileUpdate, setShowProfileUpdate] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
 
   const handleSignOut = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
 
-  const fetchLatestUpdates = async (page) => {
+  const fetchLatestUpdates = async () => {
     try {
       const response = await axios.get(
-        `https://ticket-support-system-backend-elxz.onrender.com/api/tickets/user/${userId}?page=${page}`
+        `https://ticket-support-system-backend-elxz.onrender.com/api/tickets/user/${userId}`
       );
-      const { tickets, totalPages, currentPage } = response.data;
+      const tickets = response.data;
 
       const updates = tickets
         .flatMap((ticket) => [
@@ -40,22 +38,14 @@ const UserDash = () => {
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
       setLatestUpdates(updates.slice(0, 3));
-      setTotalPages(totalPages);
-      setCurrentPage(currentPage);
     } catch (error) {
       console.error("Error fetching latest updates", error);
     }
   };
 
   useEffect(() => {
-    fetchLatestUpdates(currentPage);
-  }, [userId, currentPage]);
-
-  const handlePageChange = (newPage) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      fetchLatestUpdates(newPage);
-    }
-  };
+    fetchLatestUpdates();
+  }, [userId]);
 
   return (
     <div className="userdash-container">
@@ -85,18 +75,15 @@ const UserDash = () => {
             {showProfileUpdate ? "Hide Profile Update" : "Update Profile"}
           </button>
         </div>
-
         {showProfileUpdate && (
           <ProfileUpdate
             userId={userId}
-            onProfileUpdated={() => fetchLatestUpdates(currentPage)}
+            onProfileUpdated={fetchLatestUpdates}
           />
         )}
-
         <button className="userdash-signout" onClick={handleSignOut}>
           Sign Out
         </button>
-
         <div className="latest-updates">
           <h3>Latest Ticket Updates</h3>
           {latestUpdates.length > 0 ? (
@@ -111,23 +98,6 @@ const UserDash = () => {
           ) : (
             <p>No updates available.</p>
           )}
-          <div className="pagination-controls">
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-            >
-              Prev
-            </button>
-            <span>
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-            >
-              Next
-            </button>
-          </div>
         </div>
       </div>
     </div>
