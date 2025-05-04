@@ -7,7 +7,9 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
 }
+
 .ticket-details-wrapper {
   background-color: white;
   max-width: 600px;
@@ -19,6 +21,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
 }
+
 .back-button {
   padding: 10px 20px;
   background-color: #007bff;
@@ -27,16 +30,20 @@
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
 }
+
 .ticket-heading {
   font-size: 24px;
   margin-bottom: 15px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'DM Serif Text', serif;
 }
+
 .ticket-detail {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
   margin: 15px 0;
 }
+
 .delete-ticket-button {
   padding: 10px 20px;
   background-color: #c70f02;
@@ -45,14 +52,17 @@
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
 }
+
 .notes-section {
   margin-top: 20px;
 }
+
 .add-note-section {
   margin-top: 20px;
 }
+
 .add-note-button {
   padding: 10px 20px;
   background-color: #00a205;
@@ -61,8 +71,9 @@
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
 }
+
 .note-textarea {
   width: 100%;
   height: 100px;
@@ -70,18 +81,22 @@
   border-radius: 5px;
   border: 1px solid #ddd;
   box-sizing: border-box;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
 }
+
 .feedbacks-section {
   margin-top: 20px;
 }
+
 .feedbacks-heading {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'DM Serif Text', serif;
 }
+
 .notes-list, .feedbacks-list {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
   list-style: square;
 }
+
 .note-item, .feedback-item {
   margin: 5px 0;
 }

@@ -1,3 +1,14 @@
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: "DM Serif Text", serif; /* Default for body text */
+}
+
+.fullscreen-background {
+  background-color: rgb(203, 222, 255);
+  min-height: 100vh;
+}
+
 .user-tickets-container {
   display: flex;
   flex-direction: column;
@@ -16,10 +27,7 @@
   padding: 20px;
   margin: 0;
   text-align: center;
-}
-.fullscreen-background{
-  background-color: rgb(203, 222, 255);
-  min-height: 100vh;
+  font-family: "DM Serif Text", serif; /* For the title */
 }
 
 .ticket-list {
@@ -49,6 +57,7 @@
   display: inline-block;
   font-size: 16px;
   transition: background-color 0.3s ease;
+  font-family: "IBM Plex Sans Condensed", serif; /* For button text */
 }
 
 .view-details-button {
@@ -83,6 +92,7 @@
   border: none;
   cursor: pointer;
   transition: 0.3s ease;
+  font-family: "IBM Plex Sans Condensed", serif; /* For pagination button text */
 }
 
 .pagination-controls button:disabled {
@@ -92,4 +102,5 @@
 
 .pagination-controls span {
   font-weight: bold;
+  font-family: "IBM Plex Sans Condensed", serif; /* For pagination span text */
 }
