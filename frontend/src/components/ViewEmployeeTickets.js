@@ -6,21 +6,32 @@ import "../styling/viewemployeetickets.css";
 const ViewEmployeeTickets = () => {
   const { userId } = useParams();
   const [employeeTickets, setEmployeeTickets] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    const api = axios.create({
-      baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
-    });
-
-    api
-      .get(`/api/employee/${userId}/tickets`)
-      .then((response) => {
-        setEmployeeTickets(response.data);
-      })
-      .catch((error) => {
+    const fetchTickets = async () => {
+      try {
+        const response = await axios.get(
+          `https://ticket-support-system-backend-elxz.onrender.com/api/employee/${userId}/tickets?page=${currentPage}`
+        );
+        setEmployeeTickets(response.data.tickets);
+        setTotalPages(response.data.totalPages);
+      } catch (error) {
         console.error("Error fetching employee tickets", error);
-      });
-  }, [userId]);
+      }
+    };
+
+    fetchTickets();
+  }, [userId, currentPage]);
+
+  const handlePrev = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
 
   return (
     <div className="fullscreen-background">
@@ -41,6 +52,20 @@ const ViewEmployeeTickets = () => {
             </li>
           ))}
         </ul>
+
+        {/* Pagination controls */}
+        <div className="pagination-controls">
+          <button onClick={handlePrev} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button onClick={handleNext} disabled={currentPage === totalPages}>
+            Next
+          </button>
+        </div>
+
         <Link to={`/employeepage/${userId}`} className="go-back-button">
           Go Back
         </Link>
