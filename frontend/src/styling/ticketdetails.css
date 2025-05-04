@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-family: "IBM Plex Sans Condensed",serif;
 }
 
 .ticket-details-wrapper {
@@ -30,7 +30,7 @@
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
-  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-family: "IBM Plex Sans Condensed",serif;
 }
 
 .ticket-heading {
@@ -40,7 +40,7 @@
 }
 
 .ticket-detail {
-  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-family: "IBM Plex Sans Condensed",serif;
   margin: 15px 0;
 }
 
@@ -52,7 +52,7 @@
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
-  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-family: "IBM Plex Sans Condensed",serif;
 }
 
 .notes-section {
@@ -71,7 +71,7 @@
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
-  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-family: "IBM Plex Sans Condensed",serif;
 }
 
 .note-textarea {
@@ -81,7 +81,7 @@
   border-radius: 5px;
   border: 1px solid #ddd;
   box-sizing: border-box;
-  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-family: "IBM Plex Sans Condensed",serif;
 }
 
 .feedbacks-section {
@@ -89,11 +89,11 @@
 }
 
 .feedbacks-heading {
-  font-family: 'DM Serif Text', serif;
+  font-family: "DM Serif Text", serif;
 }
 
 .notes-list, .feedbacks-list {
-  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-family: "IBM Plex Sans Condensed",serif;
   list-style: square;
 }
 
