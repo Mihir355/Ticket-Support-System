@@ -119,55 +119,55 @@ const EmployeeTicketDetails = () => {
   }
 
   return (
-    <div className="employee-overall-container">
-      <div className="ticket-details-wrapper">
-        <button onClick={handleGoBack} className="back-button">
+    <div className="employee-container">
+      <div className="employee-ticket-wrapper">
+        <button onClick={handleGoBack} className="employee-back-button">
           Go Back
         </button>
-        <h1 className="ticket-heading">Ticket Details</h1>
-        <p className="ticket-detail">
-          <b>Ticket Id: </b>
-          {ticketDetails._id}
+        <h1 className="employee-ticket-heading">Ticket Details</h1>
+        <p className="employee-ticket-detail">
+          <b>Ticket Id:</b> {ticketDetails._id}
         </p>
-        <p className="ticket-detail">
-          <b>Description: </b>
-          {ticketDetails.description}
+        <p className="employee-ticket-detail">
+          <b>Description:</b> {ticketDetails.description}
         </p>
-        <p className="ticket-detail">
-          <b>Status: </b>
-          {ticketDetails.currentstatus}
+        <p className="employee-ticket-detail">
+          <b>Status:</b> {ticketDetails.currentstatus}
         </p>
-        <p className="ticket-detail">
-          <b>Created At: </b>
+        <p className="employee-ticket-detail">
+          <b>Created At:</b>{" "}
           {new Date(ticketDetails.createdAt).toLocaleString()}
         </p>
-        <p className="ticket-detail">
-          <b>Customer Name: </b>
-          {ticketDetails.customerName}
+        <p className="employee-ticket-detail">
+          <b>Customer Name:</b> {ticketDetails.customerName}
         </p>
-        <p className="ticket-detail">
-          <b>Customer Email: </b>
-          {ticketDetails.customerEmail}
+        <p className="employee-ticket-detail">
+          <b>Customer Email:</b> {ticketDetails.customerEmail}
         </p>
-        <button onClick={handleCloseTicket} className="delete-ticket-button">
+        <button
+          onClick={handleCloseTicket}
+          className="employee-close-ticket-button"
+        >
           Close Ticket
         </button>
-        <div className="notes-section">
-          <p className="notes-heading">Notes:</p>
-          <ul className="notes-list">
+
+        <div className="employee-notes-section">
+          <p className="employee-notes-heading">Notes:</p>
+          <ul className="employee-notes-list">
             {ticketDetails.notes.map((note, index) => (
-              <li key={index} className="note-item">
+              <li key={index} className="employee-note-item">
                 {note.content}
               </li>
             ))}
           </ul>
         </div>
-        {ticketDetails.feedbacks && ticketDetails.feedbacks.length > 0 && (
-          <div className="feedbacks-section">
-            <p className="feedbacks-heading">Responses:</p>
-            <ul className="feedbacks-list">
+
+        {ticketDetails.feedbacks?.length > 0 && (
+          <div className="employee-feedbacks-section">
+            <p className="employee-feedbacks-heading">Responses:</p>
+            <ul className="employee-feedbacks-list">
               {ticketDetails.feedbacks.map((feedback) => (
-                <li key={feedback._id} className="feedback-item">
+                <li key={feedback._id} className="employee-feedback-item">
                   {feedback.content} -{" "}
                   {new Date(feedback.createdAt).toLocaleString()}
                 </li>
@@ -175,14 +175,18 @@ const EmployeeTicketDetails = () => {
             </ul>
           </div>
         )}
-        <div className="add-note-section">
+
+        <div className="employee-add-feedback-section">
           <textarea
             value={feedbackContent}
             onChange={(e) => setFeedbackContent(e.target.value)}
             placeholder="Add a response..."
-            className="note-textarea"
+            className="employee-feedback-textarea"
           />
-          <button onClick={handleAddFeedback} className="add-note-button">
+          <button
+            onClick={handleAddFeedback}
+            className="employee-add-feedback-button"
+          >
             Add Response
           </button>
         </div>

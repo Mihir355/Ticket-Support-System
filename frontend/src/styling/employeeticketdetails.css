@@ -1,4 +1,4 @@
-.employee-overall-container {
+.employee-container {
   background-color: rgb(203, 222, 255);
   padding: 20px;
   margin: 0;
@@ -7,8 +7,10 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  font-family: "IBM Plex Sans Condensed", serif;
 }
-.ticket-details-wrapper {
+
+.employee-ticket-wrapper {
   background-color: white;
   max-width: 600px;
   width: 100%;
@@ -18,57 +20,79 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
 }
-.back-button, .delete-ticket-button, .add-note-button {
+
+.employee-back-button,
+.employee-close-ticket-button,
+.employee-add-feedback-button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "IBM Plex Sans Condensed", serif;
 }
-.back-button {
+
+.employee-back-button {
   background-color: #007bff;
   color: #fff;
+  margin-top: 10px;
 }
-.delete-ticket-button {
+
+.employee-close-ticket-button {
   background-color: #c70f02;
   color: #fff;
   margin-top: 10px;
 }
-.add-note-button {
+
+.employee-add-feedback-button {
   background-color: #00a205;
   color: #fff;
   margin-top: 10px;
 }
-.ticket-heading {
+
+.employee-ticket-heading {
   font-size: 24px;
   margin-bottom: 15px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'DM Serif Text', serif;
 }
-.ticket-detail {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+.employee-ticket-detail {
+  font-family: "IBM Plex Sans Condensed", serif;
   margin: 15px 0;
 }
-.notes-section, .feedbacks-section {
+
+.employee-notes-section,
+.employee-feedbacks-section {
   margin-top: 20px;
 }
-.notes-heading, .feedbacks-heading {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+.employee-notes-heading,
+.employee-feedbacks-heading {
+  font-family: 'DM Serif Text', serif;
   font-size: 18px;
   margin-bottom: 10px;
 }
-.notes-list, .feedbacks-list {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+.employee-notes-list,
+.employee-feedbacks-list {
+  font-family: "IBM Plex Sans Condensed", serif;
   list-style: square;
 }
-.note-item, .feedback-item {
+
+.employee-note-item,
+.employee-feedback-item {
   margin: 5px 0;
 }
-.note-textarea {
+
+.employee-feedback-textarea {
   width: 100%;
   height: 100px;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ddd;
   box-sizing: border-box;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "IBM Plex Sans Condensed", serif;
+}
+
+.employee-add-feedback-section {
+  margin-top: 20px;
 }
