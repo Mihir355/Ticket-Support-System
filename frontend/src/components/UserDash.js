@@ -18,7 +18,6 @@ const UserDash = () => {
       {showProfileUpdate && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h3 className="modal-title">Update Profile</h3>
             <ProfileUpdate
               userId={userId}
               onProfileUpdated={() => setShowProfileUpdate(false)}
