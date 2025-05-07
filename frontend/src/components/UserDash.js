@@ -55,6 +55,7 @@ const UserDash = () => {
           Here you can create tickets, view your tickets, and update your
           profile details.
         </p>
+
         <div className="userdash-buttons">
           <Link
             to={`/userpage/${userId}/create-ticket`}
@@ -75,30 +76,19 @@ const UserDash = () => {
             {showProfileUpdate ? "Hide Profile Update" : "Update Profile"}
           </button>
         </div>
+
         {showProfileUpdate && (
-          <ProfileUpdate
-            userId={userId}
-            onProfileUpdated={fetchLatestUpdates}
-          />
+          <div className="profile-update-container">
+            <ProfileUpdate
+              userId={userId}
+              onProfileUpdated={fetchLatestUpdates}
+            />
+          </div>
         )}
+
         <button className="userdash-signout" onClick={handleSignOut}>
           Sign Out
         </button>
-        <div className="latest-updates">
-          <h3>Latest Ticket Updates</h3>
-          {latestUpdates.length > 0 ? (
-            <ul>
-              {latestUpdates.map((update, index) => (
-                <li key={index}>
-                  <strong>{update.type}:</strong> {update.content}{" "}
-                  <em>({new Date(update.createdAt).toLocaleString()})</em>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No updates available.</p>
-          )}
-        </div>
       </div>
     </div>
   );
