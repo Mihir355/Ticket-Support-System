@@ -7,7 +7,6 @@ import "../styling/userdash.css";
 const UserDash = () => {
   const { userId } = useParams();
   const navigate = useNavigate();
-  const [latestUpdates, setLatestUpdates] = useState([]);
   const [showProfileUpdate, setShowProfileUpdate] = useState(false);
 
   const handleSignOut = () => {
@@ -49,6 +48,26 @@ const UserDash = () => {
 
   return (
     <div className="userdash-container">
+      {showProfileUpdate && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <ProfileUpdate
+              userId={userId}
+              onProfileUpdated={() => {
+                fetchLatestUpdates();
+                setShowProfileUpdate(false);
+              }}
+            />
+            <button
+              className="modal-close-button"
+              onClick={() => setShowProfileUpdate(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="userdash-content">
         <h2 className="userdash-title">Welcome to the User Page</h2>
         <p className="userdash-description">
@@ -69,21 +88,15 @@ const UserDash = () => {
             View My Tickets
           </Link>
           <button
-            className="userdash-buttons"
-            onClick={() => setShowProfileUpdate(!showProfileUpdate)}
+            className="userdash-button"
+            onClick={() => setShowProfileUpdate(true)}
           >
-            {showProfileUpdate ? "Hide Profile Update" : "Update Profile"}
+            Update Profile
+          </button>
+          <button className="userdash-button signout" onClick={handleSignOut}>
+            Sign Out
           </button>
         </div>
-        {showProfileUpdate && (
-          <ProfileUpdate
-            userId={userId}
-            onProfileUpdated={fetchLatestUpdates}
-          />
-        )}
-        <button className="userdash-signout" onClick={handleSignOut}>
-          Sign Out
-        </button>
       </div>
     </div>
   );
