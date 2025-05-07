@@ -8,7 +8,7 @@
   align-items: flex-start;
 }
 
-/* Main Dashboard Box */
+/* Main Card */
 .userdash-content {
   max-width: 800px;
   width: 100%;
@@ -18,7 +18,7 @@
   padding: 2rem;
 }
 
-/* Title and Description */
+/* Heading and Text */
 .userdash-title {
   font-size: 2.5rem;
   margin-bottom: 1rem;
@@ -31,7 +31,7 @@
   color: #555;
 }
 
-/* Buttons Container */
+/* Button Container */
 .userdash-buttons {
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@
   width: 100%;
 }
 
-/* Common Button Style */
+/* Generic Button Style (shared by Link and button) */
 .userdash-button {
   width: 100%;
   padding: 0.8rem 1.5rem;
@@ -56,11 +56,12 @@
   transition: background-color 0.3s ease;
 }
 
+/* Hover Effects */
 .userdash-button:hover {
   background-color: #0056b3;
 }
 
-/* Sign Out Button */
+/* Special style for Sign Out */
 .userdash-button.signout {
   background-color: #dc3545;
 }
@@ -69,7 +70,7 @@
   background-color: #c82333;
 }
 
-/* Modal Overlay Styling */
+/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -83,7 +84,7 @@
   align-items: center;
 }
 
-/* Modal Inner Content */
+/* Modal Content Box */
 .modal-content {
   background-color: white;
   padding: 2rem;
@@ -94,7 +95,7 @@
   position: relative;
 }
 
-/* Modal Close Button */
+/* Close Button Inside Modal */
 .modal-close-button {
   margin-top: 1rem;
   padding: 0.8rem 1.5rem;

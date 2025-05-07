@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import ProfileUpdate from "./profileUpdate";
 import "../styling/userdash.css";
 
@@ -14,38 +13,6 @@ const UserDash = () => {
     navigate("/");
   };
 
-  const fetchLatestUpdates = async () => {
-    try {
-      const response = await axios.get(
-        `https://ticket-support-system-backend-elxz.onrender.com/api/tickets/user/${userId}`
-      );
-      const tickets = response.data;
-
-      const updates = tickets
-        .flatMap((ticket) => [
-          ...ticket.notes.map((note) => ({
-            content: note.content,
-            createdAt: note.createdAt,
-            type: "Note",
-          })),
-          ...ticket.feedbacks.map((feedback) => ({
-            content: feedback.content,
-            createdAt: feedback.createdAt,
-            type: "Feedback",
-          })),
-        ])
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
-      setLatestUpdates(updates.slice(0, 3));
-    } catch (error) {
-      console.error("Error fetching latest updates", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchLatestUpdates();
-  }, [userId]);
-
   return (
     <div className="userdash-container">
       {showProfileUpdate && (
@@ -53,10 +20,7 @@ const UserDash = () => {
           <div className="modal-content">
             <ProfileUpdate
               userId={userId}
-              onProfileUpdated={() => {
-                fetchLatestUpdates();
-                setShowProfileUpdate(false);
-              }}
+              onProfileUpdated={() => setShowProfileUpdate(false)}
             />
             <button
               className="modal-close-button"
