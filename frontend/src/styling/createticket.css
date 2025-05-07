@@ -77,7 +77,6 @@ body {
   cursor: pointer;
   margin-top: 10px;
   font-family: "IBM Plex Sans Condensed", serif; /* For button text */
-  text-align: left; /* Aligning text to the left */
 }
 
 .create-ticket-button:hover {
