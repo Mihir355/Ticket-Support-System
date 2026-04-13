@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Navigate, Link, useNavigate } from "react-router-dom";
 import "../styling/viewmytickets.css";
 
 const UserTickets = () => {
@@ -9,6 +9,16 @@ const UserTickets = () => {
   const [selectedTicketId, setSelectedTicketId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const navigate = useNavigate();
+
+  // ✅ Check token first (runs once on mount)
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   const fetchTickets = async (page) => {
     try {
@@ -27,12 +37,22 @@ const UserTickets = () => {
       setTotalPages(response.data.totalPages);
       setCurrentPage(response.data.currentPage);
     } catch (error) {
-      console.error("Error fetching user's tickets", error);
+      // ✅ Handle invalid/expired token separately
+      if (error.response?.status === 401 || error.response?.status === 403) {
+        localStorage.removeItem("token");
+        navigate("/");
+      } else {
+        console.error("Error fetching user's tickets", error);
+      }
     }
   };
 
+  // ✅ Only call API if token exists
   useEffect(() => {
-    fetchTickets(currentPage);
+    const token = localStorage.getItem("token");
+    if (token) {
+      fetchTickets(currentPage);
+    }
   }, [userId, currentPage]);
 
   const handleViewDetails = (ticketId) => {
@@ -49,6 +69,7 @@ const UserTickets = () => {
     <div className="fullscreen-background">
       <div className="user-tickets-container">
         <h2 className="user-tickets-title">User's Tickets</h2>
+
         <ul className="ticket-list">
           {tickets.map((ticket) => (
             <li key={ticket._id} className="ticket-item">
@@ -65,7 +86,6 @@ const UserTickets = () => {
           ))}
         </ul>
 
-        {/* Pagination Controls */}
         <div className="pagination-controls">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
@@ -73,9 +93,11 @@ const UserTickets = () => {
           >
             Previous
           </button>
+
           <span>
             Page {currentPage} of {totalPages}
           </span>
+
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
@@ -89,6 +111,7 @@ const UserTickets = () => {
             to={`/userpage/${userId}/view-tickets/${selectedTicketId}/details`}
           />
         )}
+
         <Link to={`/userpage/${userId}`} className="go-back-button">
           Go Back
         </Link>
