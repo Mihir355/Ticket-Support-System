@@ -12,9 +12,17 @@ const UserTickets = () => {
 
   const fetchTickets = async (page) => {
     try {
+      const token = localStorage.getItem("token");
+
       const response = await axios.get(
-        `https://ticket-support-system-backend-elxz.onrender.com/api/tickets/user/${userId}?page=${page}`
+        `https://ticket-support-system-backend-elxz.onrender.com/api/tickets/user/${userId}?page=${page}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
+
       setTickets(response.data.tickets);
       setTotalPages(response.data.totalPages);
       setCurrentPage(response.data.currentPage);

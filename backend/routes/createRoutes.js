@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Ticket = require("../models/ticketCreate");
 const User = require("../models/user");
+const authMiddleware = require("../middleware/authMiddleware");
 
 router.post("/create", async (req, res) => {
   try {
@@ -60,16 +61,19 @@ router.post("/create", async (req, res) => {
   }
 });
 
-router.get("/user/:userId", async (req, res) => {
+router.get("/user/:userId", authMiddleware, async (req, res) => {
   try {
-    const userId = req.params.userId;
+    if (req.user.userId !== req.params.userId) {
+      return res.status(403).json({ message: "Unauthorized access" });
+    }
+
     const page = parseInt(req.query.page) || 1;
     const limit = 5;
-
     const skip = (page - 1) * limit;
 
-    const total = await Ticket.countDocuments({ userId });
-    const tickets = await Ticket.find({ userId })
+    const total = await Ticket.countDocuments({ userId: req.params.userId });
+
+    const tickets = await Ticket.find({ userId: req.params.userId })
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
@@ -80,7 +84,6 @@ router.get("/user/:userId", async (req, res) => {
       totalPages: Math.ceil(total / limit),
     });
   } catch (error) {
-    console.error("Error fetching user's tickets", error);
     res.status(500).json({ message: "Internal server error" });
   }
 });
@@ -177,7 +180,7 @@ router.patch("/:ticketId/update-status", async (req, res) => {
     const updatedTicket = await Ticket.findByIdAndUpdate(
       ticketId,
       { currentstatus: newStatus },
-      { new: true }
+      { new: true },
     );
 
     if (!updatedTicket) {
