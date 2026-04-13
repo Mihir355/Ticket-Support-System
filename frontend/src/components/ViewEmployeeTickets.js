@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import "../styling/viewemployeetickets.css";
 
 const ViewEmployeeTickets = () => {
@@ -9,24 +9,50 @@ const ViewEmployeeTickets = () => {
   const [employeeTickets, setEmployeeTickets] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [sortType, setSortType] = useState("created"); // ✅ NEW
+  const [sortType, setSortType] = useState("created");
 
+  const navigate = useNavigate();
+
+  // ✅ Step 1: Check token on mount
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/");
+    }
+  }, [navigate]);
+
+  // ✅ Step 2 + 3: API call with token + error handling
   useEffect(() => {
     const fetchTickets = async () => {
       try {
+        const token = localStorage.getItem("token");
+
+        if (!token) return; // extra safety
+
         const response = await axios.get(
           `https://ticket-support-system-backend-elxz.onrender.com/api/employee/${userId}/tickets?page=${currentPage}&sort=${sortType}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
         );
 
         setEmployeeTickets(response.data.tickets);
         setTotalPages(response.data.totalPages);
       } catch (error) {
-        console.error("Error fetching employee tickets", error);
+        if (error.response?.status === 401 || error.response?.status === 403) {
+          localStorage.removeItem("token");
+          navigate("/");
+        } else {
+          console.error("Error fetching employee tickets", error);
+        }
       }
     };
 
     fetchTickets();
-  }, [userId, currentPage, sortType]); // ✅ added sortType
+  }, [userId, currentPage, sortType, navigate]);
 
   const handlePrev = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
@@ -41,7 +67,7 @@ const ViewEmployeeTickets = () => {
       <div className="employee-tickets-container">
         <h2 className="employee-tickets-title">Your Assigned Tickets</h2>
 
-        {/* ✅ SORT BUTTONS */}
+        {/* Sort Controls */}
         <div className="sort-controls">
           <button
             onClick={() => {
