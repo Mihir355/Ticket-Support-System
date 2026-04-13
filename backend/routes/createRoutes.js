@@ -4,16 +4,18 @@ const Ticket = require("../models/ticketCreate");
 const User = require("../models/user");
 const authMiddleware = require("../middleware/authMiddleware");
 
-router.post("/create", async (req, res) => {
+router.post("/create", authMiddleware, async (req, res) => {
   try {
     const {
       customerName,
       customerEmail,
       productType,
       description,
-      userId,
       currentstatus,
     } = req.body;
+
+    // ✅ Get userId from JWT (secure)
+    const userId = req.user.userId;
 
     const createdAt = new Date();
 
@@ -35,6 +37,7 @@ router.post("/create", async (req, res) => {
       const ticketCount = await Ticket.countDocuments({
         assignedTo: employee._id,
       });
+
       if (ticketCount < minTicketCount) {
         minTicketCount = ticketCount;
         leastLoadedEmployee = employee;
@@ -46,7 +49,7 @@ router.post("/create", async (req, res) => {
       customerEmail,
       productType,
       description,
-      userId,
+      userId, // ✅ from JWT
       currentstatus,
       assignedTo: leastLoadedEmployee._id,
       createdAt,
