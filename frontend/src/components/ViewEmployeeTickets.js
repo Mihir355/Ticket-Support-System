@@ -5,16 +5,19 @@ import "../styling/viewemployeetickets.css";
 
 const ViewEmployeeTickets = () => {
   const { userId } = useParams();
+
   const [employeeTickets, setEmployeeTickets] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [sortType, setSortType] = useState("created"); // ✅ NEW
 
   useEffect(() => {
     const fetchTickets = async () => {
       try {
         const response = await axios.get(
-          `https://ticket-support-system-backend-elxz.onrender.com/api/employee/${userId}/tickets?page=${currentPage}`
+          `https://ticket-support-system-backend-elxz.onrender.com/api/employee/${userId}/tickets?page=${currentPage}&sort=${sortType}`,
         );
+
         setEmployeeTickets(response.data.tickets);
         setTotalPages(response.data.totalPages);
       } catch (error) {
@@ -23,7 +26,7 @@ const ViewEmployeeTickets = () => {
     };
 
     fetchTickets();
-  }, [userId, currentPage]);
+  }, [userId, currentPage, sortType]); // ✅ added sortType
 
   const handlePrev = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
@@ -37,12 +40,38 @@ const ViewEmployeeTickets = () => {
     <div className="fullscreen-background">
       <div className="employee-tickets-container">
         <h2 className="employee-tickets-title">Your Assigned Tickets</h2>
+
+        {/* ✅ SORT BUTTONS */}
+        <div className="sort-controls">
+          <button
+            onClick={() => {
+              setSortType("created");
+              setCurrentPage(1);
+            }}
+            className={sortType === "created" ? "active" : ""}
+          >
+            Sort by Created
+          </button>
+
+          <button
+            onClick={() => {
+              setSortType("status");
+              setCurrentPage(1);
+            }}
+            className={sortType === "status" ? "active" : ""}
+          >
+            Sort by Status
+          </button>
+        </div>
+
+        {/* Ticket List */}
         <ul className="ticket-list">
           {employeeTickets.map((ticket) => (
             <li key={ticket._id} className="ticket-item">
               <p>Description: {ticket.description}</p>
               <p>Status: {ticket.currentstatus}</p>
               <p>Created At: {new Date(ticket.createdAt).toLocaleString()}</p>
+
               <Link
                 to={`/employeepage/${userId}/view-tickets/${ticket._id}/details`}
                 className="link"
@@ -53,14 +82,16 @@ const ViewEmployeeTickets = () => {
           ))}
         </ul>
 
-        {/* Pagination controls */}
+        {/* Pagination */}
         <div className="pagination-controls">
           <button onClick={handlePrev} disabled={currentPage === 1}>
             Previous
           </button>
+
           <span>
             Page {currentPage} of {totalPages}
           </span>
+
           <button onClick={handleNext} disabled={currentPage === totalPages}>
             Next
           </button>

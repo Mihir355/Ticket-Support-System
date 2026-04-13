@@ -109,3 +109,41 @@ body {
   font-weight: bold;
   font-family: "IBM Plex Sans Condensed", serif; /* For pagination span text */
 }
+
+/* SORT CONTROLS */
+.sort-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.sort-controls button {
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-family: "IBM Plex Sans Condensed", serif;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+/* Hover effect */
+.sort-controls button:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+/* Active button (currently selected sort) */
+.sort-controls .active {
+  background-color: #28a745; /* green to differentiate */
+  font-weight: bold;
+}
+
+/* Optional: slight pressed effect */
+.sort-controls button:active {
+  transform: scale(0.97);
+}
