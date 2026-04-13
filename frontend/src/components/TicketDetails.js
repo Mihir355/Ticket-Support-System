@@ -3,64 +3,78 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styling/ticketdetails.css";
 
+// ✅ Create ONE axios instance
+const api = axios.create({
+  baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
+});
+
 const TicketDetails = () => {
   const [ticketDetails, setTicketDetails] = useState(null);
   const [noteContent, setNoteContent] = useState("");
   const navigate = useNavigate();
   const { ticketId } = useParams();
 
-  useEffect(() => {
-    const api = axios.create({
-      baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
-    });
+  // ✅ Get token once
+  const token = localStorage.getItem("token");
 
-    api
-      .get(`/api/tickets/${ticketId}/details`)
-      .then((response) => {
-        setTicketDetails(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching ticket details", error);
-      });
-  }, [ticketId]);
-
-  const handleAddNote = () => {
-    const api = axios.create({
-      baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
-    });
-
-    api
-      .post(`/api/tickets/${ticketId}/add-note`, { content: noteContent })
-      .then((response) => {
-        setTicketDetails(response.data);
-        setNoteContent("");
-      })
-      .catch((error) => {
-        console.error("Error adding note to ticket", error);
-      });
+  // ✅ Common error handler
+  const handleAuthError = (error) => {
+    if (error.response?.status === 401 || error.response?.status === 403) {
+      localStorage.removeItem("token");
+      navigate("/");
+    } else {
+      console.error(error);
+    }
   };
 
-  const handleDeleteTicket = () => {
-    const isConfirmed = window.confirm(
-      "Are you sure you want to delete this ticket?"
-    );
-
-    if (isConfirmed) {
-      const api = axios.create({
-        baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
-      });
-
-      console.log("Deleting ticket with ID:", ticketId);
-      api
-        .delete(`/api/tickets/${ticketId}/delete`)
-        .then(() => {
-          const userId = ticketDetails.userId;
-          navigate(`/userpage/${userId}/view-tickets`);
-        })
-        .catch((error) => {
-          console.error("Error deleting ticket", error);
-        });
+  // ✅ Token check
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
     }
+  }, [token, navigate]);
+
+  // ✅ Fetch ticket details
+  useEffect(() => {
+    if (!token) return;
+
+    api
+      .get(`/api/tickets/${ticketId}/details`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => setTicketDetails(res.data))
+      .catch(handleAuthError);
+  }, [ticketId, token]);
+
+  // ✅ Add note
+  const handleAddNote = () => {
+    api
+      .post(
+        `/api/tickets/${ticketId}/add-note`,
+        { content: noteContent },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      )
+      .then((res) => {
+        setTicketDetails(res.data);
+        setNoteContent("");
+      })
+      .catch(handleAuthError);
+  };
+
+  // ✅ Delete ticket
+  const handleDeleteTicket = () => {
+    if (!window.confirm("Are you sure you want to delete this ticket?")) return;
+
+    api
+      .delete(`/api/tickets/${ticketId}/delete`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(() => {
+        navigate(`/userpage/${ticketDetails.userId}/view-tickets`);
+      })
+      .catch(handleAuthError);
   };
 
   const handleGoBack = () => {
@@ -77,7 +91,9 @@ const TicketDetails = () => {
         <button onClick={handleGoBack} className="back-button">
           Go Back
         </button>
+
         <h1 className="ticket-heading">Ticket Details</h1>
+
         <p className="ticket-detail">
           <b>Ticket Id: </b>
           {ticketDetails._id}
@@ -98,10 +114,12 @@ const TicketDetails = () => {
           <b>Description: </b>
           {ticketDetails.description}
         </p>
+
         <button onClick={handleDeleteTicket} className="delete-ticket-button">
           Delete Ticket
         </button>
-        {ticketDetails.notes && ticketDetails.notes.length > 0 && (
+
+        {ticketDetails.notes?.length > 0 && (
           <div className="notes-section">
             <h3 className="notes-heading">Notes</h3>
             <ul className="notes-list">
@@ -125,6 +143,7 @@ const TicketDetails = () => {
             Add Note
           </button>
         </div>
+
         <div className="feedbacks-section">
           <p className="feedbacks-heading">Responses:</p>
           <ul className="feedbacks-list">

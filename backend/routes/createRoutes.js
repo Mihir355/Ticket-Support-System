@@ -91,32 +91,47 @@ router.get("/user/:userId", authMiddleware, async (req, res) => {
   }
 });
 
-router.get("/:ticketId/details", async (req, res) => {
+router.get("/:ticketId/details", authMiddleware, async (req, res) => {
   try {
     const ticketId = req.params.ticketId;
 
-    const ticketDetails = await Ticket.findById(ticketId);
+    const ticket = await Ticket.findById(ticketId);
 
-    if (!ticketDetails) {
+    if (!ticket) {
       return res.status(404).json({ message: "Ticket not found" });
     }
 
-    res.status(200).json(ticketDetails);
+    // ✅ Ownership check (user or employee allowed)
+    if (
+      ticket.userId.toString() !== req.user.userId &&
+      req.user.userType !== "employee"
+    ) {
+      return res.status(403).json({ message: "Unauthorized" });
+    }
+
+    res.status(200).json(ticket);
   } catch (error) {
     console.error("Error fetching ticket details", error);
     res.status(500).json({ message: "Internal server error" });
   }
 });
 
-router.delete("/:ticketId/delete", async (req, res) => {
+router.delete("/:ticketId/delete", authMiddleware, async (req, res) => {
   try {
     const ticketId = req.params.ticketId;
 
-    const deletedTicket = await Ticket.findByIdAndDelete(ticketId);
+    const ticket = await Ticket.findById(ticketId);
 
-    if (!deletedTicket) {
+    if (!ticket) {
       return res.status(404).json({ message: "Ticket not found" });
     }
+
+    // ✅ Only owner can delete
+    if (ticket.userId.toString() !== req.user.userId) {
+      return res.status(403).json({ message: "Unauthorized" });
+    }
+
+    await Ticket.findByIdAndDelete(ticketId);
 
     res.status(200).json({ message: "Ticket deleted successfully" });
   } catch (error) {
@@ -125,7 +140,7 @@ router.delete("/:ticketId/delete", async (req, res) => {
   }
 });
 
-router.post("/:ticketId/add-note", async (req, res) => {
+router.post("/:ticketId/add-note", authMiddleware, async (req, res) => {
   try {
     const ticketId = req.params.ticketId;
     const { content } = req.body;
@@ -134,6 +149,14 @@ router.post("/:ticketId/add-note", async (req, res) => {
 
     if (!ticket) {
       return res.status(404).json({ message: "Ticket not found" });
+    }
+
+    // ✅ Owner or employee can add note
+    if (
+      ticket.userId.toString() !== req.user.userId &&
+      req.user.userType !== "employee"
+    ) {
+      return res.status(403).json({ message: "Unauthorized" });
     }
 
     ticket.notes.push({
@@ -145,7 +168,7 @@ router.post("/:ticketId/add-note", async (req, res) => {
 
     res.status(200).json(updatedTicket);
   } catch (error) {
-    console.error("Error adding note to ticket", error);
+    console.error("Error adding note", error);
     res.status(500).json({ message: "Internal server error" });
   }
 });
