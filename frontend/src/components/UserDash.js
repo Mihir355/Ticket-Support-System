@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ProfileUpdate from "./profileUpdate";
 import "../styling/userdash.css";
@@ -7,6 +7,15 @@ const UserDash = () => {
   const { userId } = useParams();
   const navigate = useNavigate();
   const [showProfileUpdate, setShowProfileUpdate] = useState(false);
+
+  // ✅ Token check
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   const handleSignOut = () => {
     localStorage.removeItem("token");
@@ -38,6 +47,7 @@ const UserDash = () => {
           Here you can create tickets, view your tickets, and update your
           profile details.
         </p>
+
         <div className="userdash-buttons">
           <Link
             to={`/userpage/${userId}/create-ticket`}
@@ -45,18 +55,21 @@ const UserDash = () => {
           >
             Create Ticket
           </Link>
+
           <Link
             to={`/userpage/${userId}/view-tickets`}
             className="userdash-button"
           >
             View My Tickets
           </Link>
+
           <button
             className="userdash-button"
             onClick={() => setShowProfileUpdate(true)}
           >
             Update Profile
           </button>
+
           <button className="userdash-button signout" onClick={handleSignOut}>
             Sign Out
           </button>
