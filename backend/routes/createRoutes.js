@@ -36,6 +36,7 @@ router.post("/create", authMiddleware, async (req, res) => {
     for (const employee of employees) {
       const ticketCount = await Ticket.countDocuments({
         assignedTo: employee._id,
+        currentstatus: { $in: ["open", "in progress"] },
       });
 
       if (ticketCount < minTicketCount) {
