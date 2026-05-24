@@ -12,11 +12,14 @@ const EmployeeTicketDetails = () => {
   useEffect(() => {
     const fetchTicketDetails = async () => {
       try {
+        const token = localStorage.getItem("token");
         const api = axios.create({
           baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
         });
 
-        const response = await api.get(`/api/tickets/${ticketId}/details`);
+        const response = await api.get(`/api/tickets/${ticketId}/details`, {
+          headers: { Authorization: `Bearer ${token}` }, // add this
+        });
         const fetchedTicketDetails = response.data;
 
         // Only update status if the current status is not "closed"
@@ -48,14 +51,21 @@ const EmployeeTicketDetails = () => {
   }, [ticketId]);
 
   const handleAddFeedback = () => {
+    const token = localStorage.getItem("token");
     const api = axios.create({
       baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
     });
 
     api
-      .post(`/api/tickets/${ticketId}/add-feedback`, {
-        content: feedbackContent,
-      })
+      .post(
+        `/api/tickets/${ticketId}/add-feedback`,
+        {
+          content: feedbackContent,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` }, // add this
+        },
+      )
       .then((response) => {
         const updatedTicketDetails = response.data;
         setTicketDetails(updatedTicketDetails);
@@ -88,15 +98,22 @@ const EmployeeTicketDetails = () => {
   };
 
   const handleCloseTicket = () => {
+    const token = localStorage.getItem("token");
     const api = axios.create({
       baseURL: "https://ticket-support-system-backend-elxz.onrender.com",
     });
 
     if (ticketDetails.currentstatus !== "closed") {
       api
-        .patch(`/api/tickets/${ticketId}/update-status`, {
-          newStatus: "closed",
-        })
+        .patch(
+          `/api/tickets/${ticketId}/update-status`,
+          {
+            newStatus: "closed",
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` }, // add this
+          },
+        )
         .then((response) => {
           setTicketDetails((prevTicketDetails) => ({
             ...prevTicketDetails,
