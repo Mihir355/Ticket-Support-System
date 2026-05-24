@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id).select(
-      "firstName lastName email"
+      "firstName lastName email",
     );
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -24,7 +24,7 @@ router.put("/:id", async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
       { firstName, lastName, email },
-      { new: true }
+      { new: true },
     );
     res.status(200).json(updatedUser);
   } catch (error) {
@@ -77,9 +77,11 @@ router.post("/signin", async (req, res) => {
       return res.status(401).json({ message: "Incorrect password" });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "10m",
-    });
+    const token = jwt.sign(
+      { userId: user._id, userType: user.userType }, // add userType here
+      process.env.JWT_SECRET,
+      { expiresIn: "10m" },
+    );
 
     res.status(200).json({ token, user });
   } catch (error) {
